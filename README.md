@@ -1,10 +1,11 @@
 # receiver limited floor
 
-**Published Research Paper:** [https://zenodo.org/records/19323194](https://zenodo.org/records/19323194)
+**Website:** https://windstorminstitute.org
+
+**Published Research Paper (Zenodo):** [https://zenodo.org/records/19323194](https://zenodo.org/records/19323194)
 
 **Windstorm Institute Community:** https://zenodo.org/communities/windstorm-institute/
 
-This repository contains the layperson article and research paper.
-
-- `article.md` — Accessible summary for general readers
-- `paper.pdf` — Full academic paper with methods and data
+This repository contains:
+- `article.html` — Accessible article from the website
+- `paper.pdf` — Full academic paper
