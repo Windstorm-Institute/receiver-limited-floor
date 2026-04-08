@@ -1,4 +1,6 @@
-# receiver limited floor
+# The Receiver-Limited Floor
+
+**Paper 2** — Rate-Distortion Bounds on Serial Decoding Throughput
 
 **Website:** https://windstorminstitute.org
 
