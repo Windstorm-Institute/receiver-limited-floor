@@ -6,6 +6,8 @@
 
 **Windstorm Institute Community:** https://zenodo.org/communities/windstorm-institute/
 
+**Experiments & Code:** https://github.com/Windstorm-Labs/receiver-limited-floor
+
 This repository contains:
 - `article.html` — Accessible article from the website
 - `paper.pdf` — Full academic paper
