@@ -150,7 +150,7 @@ The separation into language-match groups revealed an unexpected result: the inf
 | X to Y (fully mismatched) | 1,304 | 5.52 | Model confused on both sides; +1.33 bits penalty |
 | X to EN (matched decoder) | 256 | 5.98 | Encoder garbled, decoder compensates; highest cost |
 
-Matched-encoder models (EN to X), which receive English input matching the corpus, operate at BPB ~ 4.19 -- within the throughput basin and near the ribosome prediction of 4.39 bits. Fully mismatched models (X to Y) operate at BPB ~ 5.52 -- a penalty of +1.33 bits. The groups are significantly different (Kruskal-Wallis H = 230.2, p ~ 0), but vocabulary independence holds within each group. This finding was not part of the original experiment design and emerged during post-hoc analysis. It is reported as an exploratory finding, though the effect size (1.33 bits) is large and consistent across 1,461 models.
+Matched-encoder models (EN to X), which receive English input matching the corpus, operate at BPB ~ 4.19. This BPB is bits per *byte* of the English reference corpus -- a compression measure of a mismatched translation model -- whereas the ribosome floor of 4.39 bits is bits per serial decoding *event*; the two use different denominators, so their numerical proximity is a coincidence rather than a unit-matched agreement, and it is reported only as an exploratory observation that both quantities fall in the same narrow bit range. (The flagship causal language models, the closer analog of a serial decoder, sit at BPB ~ 0.94.) Fully mismatched models (X to Y) operate at BPB ~ 5.52 -- a penalty of +1.33 bits. The groups are significantly different (Kruskal-Wallis H = 230.2, p ~ 0), but vocabulary independence holds within each group. This finding was not part of the original experiment design and emerged during post-hoc analysis. It is reported as an exploratory finding, though the effect size (1.33 bits) is large and consistent across 1,461 models.
 
 ### 3.6. Empirical Phonology Values
 
@@ -264,7 +264,7 @@ The following figures accompany this paper and are submitted separately:
 - **Figure 2.** Predicted versus observed throughput -- three systems with residual annotations.
 - **Figure 3.** BPB versus vocabulary size -- 1,749 models across four groups. Regression lines are flat in all groups.
 - **Figure 4.** BPB distribution by group -- boxplot showing four distinct operating regimes.
-- **Figure 5.** Language-match effect on throughput -- mean BPB with 95% confidence intervals. EN to X lands at 4.19 bits, near the ribosome floor.
+- **Figure 5.** Language-match effect on throughput -- mean BPB with 95% confidence intervals. EN to X lands at 4.19 bits (bits per byte of English), in the same narrow band as, but not a unit-matched comparison to, the ribosome floor.
 - **Figure 6.** BPB density by group -- kernel density estimation showing how each group relates to the throughput basin.
 - **Figure 7.** The information cost of substrate mismatch -- +1.33 bits between matched and mismatched processing.
 - **Figure 8.** Vocabulary independence statistics by group -- summary table visualization.
