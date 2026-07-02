@@ -101,15 +101,15 @@ Table 1 presents the zero-free-parameter predictions from the rate-distortion fl
 
 **Table 1.** Rate-distortion predictions for three serial decoding systems.
 
-| System | M | epsilon | R_M(epsilon) | Observed | Residual |
-|--------|---|---------|-------------|----------|----------|
-| Ribosome | 21 | 10^-4 | 4.390 bits | 4.390 bits | +0.000 |
-| Phonology | 31 | 0.02 | 4.71 bits | 4.95 bits | +0.24 |
-| Chromatic scale | 12 | 0.05 | 3.12 bits | 3.58 bits | +0.46 |
+| System | M | epsilon | R_M(epsilon) | Support bound log_2(M) | Analytic correction (log_2 M - R_M) |
+|--------|---|---------|-------------|------------------------|--------------------------------------|
+| Ribosome | 21 | 10^-4 | 4.390 bits | 4.392 bits | 0.002 |
+| Phonology | 31 | 0.02 | 4.71 bits | 4.95 bits | 0.240 |
+| Chromatic scale | 12 | 0.05 | 3.12 bits | 3.58 bits | 0.459 |
 
 At epsilon = 10^-4, the ribosome correction terms amount to only 0.0019 bits (0.04% of log_2(21)). The near-exact match between R_M(epsilon) and log_2(M) at very low error rates is a mathematical property of (4), not an independent empirical confirmation. The framework's value lies in the non-trivial cases (phonology and chromatic scale) and in unifying M, epsilon, and throughput into a single testable relationship.
 
-The residuals represent excess-capacity margins above the rate-distortion floor. Biology operates nearest the floor; cognition and music carry higher slack, consistent with greater discrimination cost in neural substrates.
+The final column is the analytic correction term log_2(M) - R_M(epsilon) = H_b(epsilon) + epsilon * log_2(M-1). Because the 'Support bound' entries are the maximum-entropy ceiling log_2(M) rather than independent throughput measurements, this column is fixed by M and epsilon alone and is not a comparison against measured data. The only independent (Tier 1) measurement available for these systems is the Miller-Nicely confusion-matrix mutual information for phonology, I(X;Y) ~ 4.20 bits, against which the floor R_31(0.02) = 4.71 overpredicts by -0.51 bits (see the Empirical Phonology Values subsection).
 
 ### 3.2. Non-Uniform Distribution Robustness
 
