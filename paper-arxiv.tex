@@ -1,27 +1,15 @@
-% Paper 2 of 7 in The Windstorm Series
-\documentclass[12pt,a4paper]{article}
-
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{natbib}
-\usepackage{booktabs}
-
+\documentclass[11pt]{article}
+\usepackage{wsi-style}
+\wsirunhead{The Receiver-Limited Floor}
 \title{Rate-Distortion Bounds on Serial Decoding Throughput}
-
-\author{Grant Lavell Whitmer III\\
-The Windstorm Institute, Fort Ann, NY 12827, USA\\
-\texttt{grantwhitmer3@gmail.com}}
-
+\author{Grant Whitmer}
 \date{March 2026}
-
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-This study derives a mechanistic bound on effective information per serial decoding event using the $M$-ary rate-distortion function $R_M(\varepsilon)$. Applied to three independently characterized systems---the ribosome ($M = 21$, $\varepsilon = 10^{-4}$), human phonology ($M = 31$, $\varepsilon \sim 0.02$), and the chromatic scale ($M = 12$, $\varepsilon \sim 0.05$)---the framework predicts throughput values of 4.39, 4.71, and 3.12 bits, respectively. Under realistic non-uniform amino acid frequencies, the ribosome prediction shifts from 4.390 to approximately 4.175 bits, revealing a 0.2-bit excess-capacity margin. The vocabulary-independence prediction was tested across 1,749 models spanning two architectures---32 causal language models and 1,717 encoder-decoder translation models---evaluated on a shared reference corpus. Vocabulary size does not predict bits-per-byte in causal models ($\beta_1 = 0.058$, $p = 0.643$) or in language-matched translation models (Spearman $p = 0.13$). Language-mismatch stratification reveals a quantifiable $+1.33$-bit information cost when models process unfamiliar languages. These results support the hypothesis that the rate-distortion floor is a universal mechanistic bound for serial decoders and vocabulary size is primarily a redundancy parameter.
+This study derives a mechanistic bound on effective information per serial decoding event using the $M$-ary rate-distortion function $R_M(\varepsilon)$. Applied to three independently characterized systems---the ribosome ($M = 21$, $\varepsilon = 10^{-4}$), human phonology ($M = 31$, $\varepsilon \sim 0.02$), and the chromatic scale ($M = 12$, $\varepsilon \sim 0.05$)---the framework predicts throughput values of 4.39, 4.71, and 3.12 bits, respectively. Under realistic non-uniform amino acid frequencies, the floor shifts from 4.390 to approximately 4.175 bits---a 0.2-bit reduction set by amino-acid usage bias. The vocabulary-independence prediction was tested across 1,749 models spanning two architectures---32 causal language models and 1,717 encoder-decoder translation models---evaluated on a shared reference corpus. Vocabulary size does not predict bits-per-byte in causal models ($\beta_1 = 0.058$, $p = 0.643$) or in language-matched translation models (Spearman $p = 0.13$). Language-mismatch stratification reveals a quantifiable $+1.33$-bit information cost when models process unfamiliar languages. These results support the hypothesis that the rate-distortion floor is a universal mechanistic bound for serial decoders and vocabulary size is primarily a redundancy parameter.
 \end{abstract}
 
 \noindent\textbf{Keywords:} $M$-ary discrimination; receiver constraint; genetic code fidelity; tokenizer vocabulary; bits per byte; cross-architecture compression; language mismatch penalty; information bottleneck; throughput convergence; substrate independence
@@ -141,7 +129,7 @@ The final column is the analytic correction term $\log_2 M - R_M(\varepsilon) = 
 
 \subsection{Non-Uniform Distribution Robustness}
 
-Under non-uniform amino acid frequencies, the ribosome prediction shifts from 4.390 to approximately 4.175 bits. The observed ribosome throughput therefore sits approximately 0.2 bits above the non-uniform floor---a small but real excess-capacity margin consistent with the slack observed in other substrates. This correction makes the result more interesting rather than less: rather than a suspiciously perfect residual of 0.000, a genuine physical margin comparable to what Hopfield kinetic proofreading predicts is revealed~\cite{hopfield1974}.
+Under non-uniform amino acid frequencies, the rate-distortion floor shifts from 4.390 to approximately 4.175 bits---a 0.2-bit reduction driven by amino-acid usage bias (the KL divergence of empirical frequencies from uniform). The support-size ceiling $\log_2(21) = 4.392$ therefore stands about 0.2 bits above the non-uniform floor. We are explicit that this gap is a difference between two theoretical quantities---the uniform ceiling and the usage-weighted floor---not a comparison against an independent measurement of ribosome throughput; establishing a genuine excess-capacity margin would require a Tier-1 confusion-matrix measurement of ribosomal decoding, which is not yet available. The correction is nonetheless informative: it shows the floor is sensitive to realistic usage statistics at the $\sim$0.2-bit level, comparable to the discrimination margins implied by Hopfield kinetic proofreading~\cite{hopfield1974}.
 
 \subsection{Vocabulary Independence Across 1,749 Models}
 
@@ -248,7 +236,7 @@ Four falsifiable predictions are offered:
 
 \section{Conclusion}
 
-The rate-distortion floor $R_M(\varepsilon)$ provides a universal mechanistic bound for serial decoding throughput. For biological receivers with moderate $M$ and moderate $\varepsilon$, this bound confines throughput to 3--5 bits---a geometric property of the rate-distortion surface, not an empirical coincidence. The empirical finding that AI bits-per-byte is independent of vocabulary size across 1,749 models (causal: $p = 0.643$; matched-encoder translation: Spearman $p = 0.13$) supports the vocabulary-as-redundancy hypothesis. Three independent evidence lines---the rate-distortion framework, the biological predictions, and the AI regularities (vocabulary independence and language-match penalty)---together establish a receiver-limited serial decoding constraint. Future work should prioritize controlled single-architecture vocabulary sweeps and Tier~1 confusion-matrix measurements across additional biological systems to narrow the empirical calibration of this framework.
+The rate-distortion floor $R_M(\varepsilon)$ provides a universal mechanistic bound for serial decoding throughput. For biological receivers with moderate $M$ and moderate $\varepsilon$, this bound confines throughput to 3--5 bits---a geometric property of the rate-distortion surface, not an empirical coincidence. The empirical finding that AI bits-per-byte is independent of vocabulary size across 1,749 models (causal: $p = 0.643$; matched-encoder translation: Spearman $p = 0.13$) supports the vocabulary-as-redundancy hypothesis. Three independent evidence lines---the rate-distortion framework, the biological predictions, and the AI regularities (vocabulary independence and language-match penalty)---together support a receiver-limited serial decoding constraint. Future work should prioritize controlled single-architecture vocabulary sweeps and Tier~1 confusion-matrix measurements across additional biological systems to narrow the empirical calibration of this framework.
 
 \vspace{1em}
 \noindent\textbf{Author Contributions:} Conceptualization, G.L.W.; methodology, G.L.W.; software, G.L.W.; validation, G.L.W.; formal analysis, G.L.W.; investigation, G.L.W.; resources, G.L.W.; data curation, G.L.W.; writing---original draft preparation, G.L.W.; writing---review and editing, G.L.W.; visualization, G.L.W.; supervision, G.L.W.; project administration, G.L.W.
@@ -261,13 +249,34 @@ The rate-distortion floor $R_M(\varepsilon)$ provides a universal mechanistic bo
 
 \noindent\textbf{Conflicts of Interest:} The author declares no conflict of interest.
 
+\section*{Appendix A: Experiment Protocol}
+
+The complete experiment protocol---hardware specifications, corpus preparation, BPB computation for three model formats (HuggingFace, GGUF, MarianMT), statistical-analysis procedures, and visualization specifications---is provided in the supplementary file \texttt{APPENDIX-A-EXPERIMENT-PROTOCOL.md} in the companion repository~\cite{whitmer2026rlf_code}. The protocol was designed for full reproducibility: any researcher with access to HuggingFace models and a CUDA-capable GPU can replicate the 1{,}749-model sweep from the provided instructions.
+
+\section*{Appendix B: Figure Descriptions}
+
+Eight figures accompany this paper (submitted separately):
+\begin{itemize}
+    \item \textbf{Figure 1.} Rate-distortion curves for $M \in \{4, 7, 12, 21, 31, 44, 64\}$; the biological systems (stars) sit inside the 3--5.5-bit convergence band.
+    \item \textbf{Figure 2.} Predicted versus observed throughput for the three systems, with residual annotations.
+    \item \textbf{Figure 3.} BPB versus vocabulary size across 1{,}749 models in four groups; regression lines are flat in all groups.
+    \item \textbf{Figure 4.} BPB distribution by group (boxplot), showing four distinct operating regimes.
+    \item \textbf{Figure 5.} Language-match effect on throughput (mean BPB, 95\% confidence intervals). EN$\to$X lands at 4.19 bits---\emph{bits per byte of English}, in the same narrow band as, but not a unit-matched comparison to, the ribosome floor.
+    \item \textbf{Figure 6.} BPB density by group (kernel density estimate), relating each group to the throughput basin.
+    \item \textbf{Figure 7.} The information cost of substrate mismatch: $+1.33$ bits between matched and mismatched processing.
+    \item \textbf{Figure 8.} Vocabulary-independence statistics by group (summary-table visualization).
+\end{itemize}
+
+\subsection*{Data, Code \& Resources}
+\noindent Manuscript source and archived record: \url{https://github.com/Windstorm-Institute/receiver-limited-floor} (Zenodo: \href{https://doi.org/10.5281/zenodo.19322972}{10.5281/zenodo.19322972}). Experiments, datasets, and analysis code: \url{https://github.com/Windstorm-Labs/receiver-limited-floor}. Windstorm Institute: \url{https://windstorminstitute.org}. Windstorm Labs: \url{https://windstormlabs.com}.
+
 \begin{thebibliography}{15}
 
 \bibitem{whitmer2026fons}
 Whitmer III, G.L.
 The Fons Constraint: Information-Theoretic Convergence on Encoding Depth in Self-Replicating Systems.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19274048}{DOI: 10.5281/zenodo.19274048}
+\href{https://doi.org/10.5281/zenodo.19274047}{DOI: 10.5281/zenodo.19274047}
 
 \bibitem{shannon1948}
 Shannon, C.E.
@@ -314,7 +323,7 @@ Kinetic Proofreading: A New Mechanism for Reducing Errors in Biosynthetic Proces
 Whitmer III, G.L.
 The Throughput Basin: Cross-Substrate Convergence and Decomposition of Serial Decoding Throughput.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19323194}{DOI: 10.5281/zenodo.19323194}
+\href{https://doi.org/10.5281/zenodo.19323193}{DOI: 10.5281/zenodo.19323193}
 
 \bibitem{borst1999}
 Borst, A.; Theunissen, F.E.
@@ -326,19 +335,19 @@ Information Theory and Neural Coding.
 Whitmer III, G.L.
 The Serial Decoding Basin: Five Experiments on Convergence, Thermodynamic Anchoring, and Receiver-Limited Geometry.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19323423}{DOI: 10.5281/zenodo.19323423}
+\href{https://doi.org/10.5281/zenodo.19323422}{DOI: 10.5281/zenodo.19323422}
 
 \bibitem{whitmer2026dd}
 Whitmer III, G.L.
 The Dissipative Decoder: Thermodynamic Cost Bounds on the Serial Decoding Throughput Basin.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19433048}{DOI: 10.5281/zenodo.19433048}
+\href{https://doi.org/10.5281/zenodo.19432785}{DOI: 10.5281/zenodo.19432785}
 
 \bibitem{whitmer2026ic}
 Whitmer III, G.L.
 The Inherited Constraint: Biological Throughput Limits Shape the Information Structure of Human Language and AI.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19432911}{DOI: 10.5281/zenodo.19432911}
+\href{https://doi.org/10.5281/zenodo.19432910}{DOI: 10.5281/zenodo.19432910}
 
 \bibitem{whitmer2026tbo}
 Whitmer III, G.L.
@@ -350,14 +359,14 @@ The Throughput Basin Origin: Four Orthogonal Experiments on Whether Serial Decod
 Whitmer III, G.L.
 The Receiver-Limited Floor: Rate-Distortion Bounds on Serial Decoding Throughput.
 \textit{Zenodo} \textbf{2026}.
-\href{https://doi.org/10.5281/zenodo.19322973}{DOI: 10.5281/zenodo.19322973}
+\href{https://doi.org/10.5281/zenodo.19322972}{DOI: 10.5281/zenodo.19322972}
 
 \end{thebibliography}
 
 \vspace{2em}
-\noindent\textit{This paper is Paper 2 of The Windstorm Series (Papers 1--7) on universal constraints in serial information processing.}
+\noindent\textit{This is Paper 2 of The Windstorm Series (Papers 1--9) on universal constraints in serial information processing.}
 
 \vspace{1em}
-\noindent\textcopyright~2026 Grant Lavell Whitmer III. This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License} (CC BY 4.0).
+\noindent\textcopyright~2026 Grant Whitmer. This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License} (CC BY 4.0).
 
 \end{document}
